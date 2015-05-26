@@ -9,11 +9,11 @@ var outer = function(){
 //Above you're given a function that returns another function which has a closure over the name variable.
 //Invoke outer saving the return value into another variable called 'inner'.
 
-  //Code Here
+var inner = outer();
 
 //Once you do that, invoke inner.
 
-  //Code Here
+inner();
 
 
 
@@ -21,19 +21,26 @@ var outer = function(){
 
 
 
-var callFriend = function(){
+var callFriend = function(number){
   var friend = 'Jake';
   function callF(number){
     return 'Calling ' + friend + ' at ' + number;
   }
-  return callF;
+  return callF(number);
 };
 
 //Above you're given a callFriend function that returns another function.
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
+var callFriend = function(number){
+  var friend = 'Jake';
+  function callF(number){
+    return 'Calling ' + friend + ' at ' + number;
+  }
+  return callF(number);
+};
 
+callFriend('435-215-9874')
 
 
 //Next Problem
@@ -44,8 +51,59 @@ var callFriend = function(){
   Write a function called makeCounter that makes the following code work properly.
 */
 
-  //Code Here
+
+var makeCounter = function () {
+  var ans = 0;
+  for (i = 0; i < 4; i++) {
+    function add () {
+      ans++;
+      return ans;
+    }
+  }
+}
+
+
+
+var work = function () {
+  var ans = 1;
+  var makeCounter = function () {
+    ans++;
+  }
+  makeCounter();
+  return ans;
+};
+
+
+
+  var ans = makeCounter();
+    var makeCounter = function () {
+      return 1;
+    }
+  ans++
+
+  var makeCounter = function () {
+    var ans = add();
+    function add () {
+      var ans = 0;
+      ans ++;
+      return ans;
+    }
+  }
+
+
+
+
+
+  var makeCounter = function () {
+    var ans = 0;
+    return function() { 
+      ans++;
+      console.log(ans);
+    };
+  }
+
   var count = makeCounter();
+
   count() // 1
   count() // 2
   count() // 3
@@ -62,9 +120,22 @@ var callFriend = function(){
   (which invokes the original function that was passed in) that can only ever be executed once.
 */
 
-  //Code Here
+function fn1 (fn2) {
+  return function newFn () {
+    fn2();
+  }
+}
+
+function anotherFn () {
+  alert("I'm working")
+}
+
+var returnAnonymousFn = fn1(anotherFn);
+
+returnAnonymousFn();
 
 
+fn1(anotherFn)();
 
 //Next Problem
 
